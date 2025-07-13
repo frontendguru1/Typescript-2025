@@ -178,6 +178,7 @@ const userList: IUser[] = [
 // userList[0].isAdmin = "test" //invalid
 userList[0].isAdmin = true; //valid
 
+
 /*** Function */
 function add(num1: number, num2: number): number {
   return num1 + num2;
@@ -185,11 +186,13 @@ function add(num1: number, num2: number): number {
 }
 add(5, 5); //valid
 
+// arrow
 const addTwoNumber = (num1: number, num2: number): number => {
   return num1 + num2;
 }
 addTwoNumber(5, 7);
 
+// arrow function with implicit return
 const addThreeNumber = (num1: number, num2: number, num3: number): number => num1 + num2 + num3;
 addThreeNumber(5, 7, 5);
 
@@ -251,6 +254,86 @@ checkIsAdmin(true)
 getUserName("John Doe");
 
 /*** --------------------- */
+
+
+
+/* 
+never
+readOnly
+void
+*/
+
+// never
+const throwError = (message: string): never => {
+  throw new Error(message);
+}
+
+throwError("This is an error message");
+
+
+ const infiniteLoop = (): never => {
+  while (true) {
+    console.log("This will run forever");
+  }
+}
+
+// void
+const logMessage = (message: string): void => {
+  console.log(message);
+}
+logMessage("This is a log message");
+
+const test = (): void => {
+  return undefined; // valid, as it returns undefined implicitly
+}
+
+interface ISuperUser {
+  id: number;
+  name: string;
+  age: number;
+  isAdmin: boolean;
+  getDetails: () => void;
+}
+
+const superUser: ISuperUser = {
+  id: 1,
+  name: "John Doe",
+  age: 30,
+  isAdmin: false,
+  getDetails(){
+    console.log(`User ID: ${this.id}, Name: ${this.name}, Age: ${this.age}, Is Admin: ${this.isAdmin}`);
+    return this.name 
+  }
+}
+
+// readonly
+
+interface IAlexUser {
+  readonly id: number;
+  name: string;
+  age: number;
+  mobile: string;
+  address: {
+      city: string;
+      country: string;
+  };
+  readonly aadharNumber: string;
+}
+
+const alexUser: IAlexUser = {
+  id: 1,
+  name: "Alex",
+  age: 25,
+  mobile: "123-456-7890",
+  address: {
+    city: "New Delhi",
+    country: "India",
+  },
+  aadharNumber: "1234-5678-9012",
+}
+
+alexUser.mobile = "987-654-3210"; // valid
+// alexUser.aadharNumber = "9876-5432-1098"; // invalid
 
 
 
